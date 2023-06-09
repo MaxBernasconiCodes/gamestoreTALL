@@ -1,7 +1,6 @@
-<div class="transition-all hover:ring-1 rounded-xl ring-pink-700 p-4 hover:p-6 flex flex-col gap-2 h-72 w-56">
+<div class="transition-all cursor-pointer hover:bg-neutral-950 hover:ring-1 rounded-xl ring-pink-700 p-4 hover:p-6 flex flex-col gap-2 h-72 w-56">
     <figure class="w-full h-1/2 flex flex-col gap-1 justify-start items-start">
         <img class="w-full  overflow-hidden" src="https://cdn.cloudflare.steamstatic.com/steam/apps/220/capsule_sm_120.jpg"/>
-
         <figcaption class="font-bold">Half-Life 2</figcaption>
     </figure>
     <div class=" h-1/2 flex flex-col justify-between items-center">
