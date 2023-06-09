@@ -1,5 +1,4 @@
 <div class="w-full h-96 mx-auto">
-    <script defer src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 	<div id="default-carousel" class="relative" data-carousel="static">
         <!-- Carousel wrapper -->
         <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
