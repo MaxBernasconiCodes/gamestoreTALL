@@ -1,3 +1,3 @@
-<div class="bg-black">
-<livewire:game.card>
+<div class="p-8">
+    <livewire:game.card>
 </div>
