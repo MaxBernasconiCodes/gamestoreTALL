@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/deals', [DealController::class, 'index']);
+Route::get('/deals', [DealController::class, 'index'])->name('apideals');
