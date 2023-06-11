@@ -10,40 +10,35 @@ class DealController extends Controller
 {
     public function index(Request $request)
     {
-        //request handling
         $searchParameters = explode(",", $request->input('q'));
+        $deals = $this->getAllDeals();
+        $deals = $this->filterDeals($deals, $searchParameters);
+        return  $deals;
+    }
 
-        //geting data from JSON file
+    public static function getAllDeals(){
         $data = Storage::get('data/deals.json');
         $deals = json_decode($data, true);
-        $filteredData = $deals;
-        //determining filters
+        return $deals;
+    }
 
-        //check if its only one item
-
+    public function filterDeals($deals, $searchParameters){
+        $filteredDeals = [];
         if (count($searchParameters) == 1) {
             $operation = $this->determineOperation($searchParameters[0]);
-            $filteredData =  $this->filterDeals($deals, $operation);
+            $filteredDeals =  $this->applyFilter($deals, $operation);
         }
 
-        //check if it has operators
-
-
-        // -checking if filters are valid
-        // -aplying filters to the data
         else if (count($searchParameters) > 1) {
             foreach ($searchParameters as $searchParameter) {
                 $operation = $this->determineOperation($searchParameter);
-                $filteredData = $this->filterDeals($filteredData, $operation);
-                return ($filteredData);
+                $filteredDeals = $this->applyFilter($deals, $operation);
+                return ($deals);
             }
         }
-
-        //returning filtered data
-        return  $filteredData;
+        return $filteredDeals;
     }
 
-    //determines the operation needed to make out of the query string
     private function determineOperation($string)
     {
         $operation = [
@@ -64,9 +59,8 @@ class DealController extends Controller
         return $operation;
     }
 
-    private function filterDeals($deals, $operation)
+    private function applyFilter($deals, $operation)
     {
-
         $results = $deals;
         if (!empty($operation['value'])) {
             if ($operation['property'] == 'title') {
