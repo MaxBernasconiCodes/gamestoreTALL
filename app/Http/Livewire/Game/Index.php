@@ -30,25 +30,26 @@ class Index extends Component
         else
         {
             $filters = explode(",", $this->search);
-            $results = $this->filterDeals($this->deals, $filters);
+            $results = $this->filterDeals($this->filteredDeals, $filters);
             $this->filteredDeals = $results;
         }
     }
-    public function filterDeals($deals, $searchParameters){
-        $filteredDeals = [];
+
+    public function filterDeals($list, $searchParameters){
+        $results = [];
         if (count($searchParameters) == 1) {
             $operation = $this->determineOperation($searchParameters[0]);
-            $filteredDeals =  $this->applyFilter($deals, $operation);
+            $results =  $this->applyFilter($list, $operation);
         }
 
         else if (count($searchParameters) > 1) {
+            $results = $list;
             foreach ($searchParameters as $searchParameter) {
                 $operation = $this->determineOperation($searchParameter);
-                $filteredDeals = $this->applyFilter($deals, $operation);
-                return ($deals);
+                $results = $this->applyFilter($results, $operation);
             }
         }
-        return $filteredDeals;
+        return $results;
     }
 
     private function determineOperation($string)

@@ -45,6 +45,12 @@ Build the assets
    npm run build
 ```
 
+Create the sim link for storage
+
+```bash
+   php artisan storage:link
+```
+
 Start the server
 
 ```bash
